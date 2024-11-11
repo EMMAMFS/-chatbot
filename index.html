@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Interface</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <img src="C:\Users\HP\Downloads\webzenix_cropped_logo (3) (2).png" alt="Logo" id="logo">
+
+  <div id="chatbox">
+    <div id="messages">
+      <!-- Chat messages will appear here -->
+    </div>
+    <div id="input-area">
+      <input type="text" id="user-input" placeholder="Type a message...">
+      <button id="send-button">
+        <i class="fa-sharp fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+    <div id="loading" style="display: none;">Loading...</div>
+  </div>
+
+  <!-- Request Button -->
+  <button id="request-button">
+    Request Change
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
