@@ -31,6 +31,30 @@
     Request Change
   </button>
 
+  <!-- Hidden form for request change -->
+  <div id="request-form" style="display: none;">
+    <form action="https://formspree.io/f/yourFormId" method="POST">
+      <input type="text" name="name" class="input-field" placeholder="Your Name" required><br>
+      <input type="email" name="email" class="input-field" placeholder="Your Email" required><br>
+      <textarea name="message" class="input-field" placeholder="Describe the change you'd like" required></textarea><br>
+      <button type="submit">Send Request</button>
+    </form>
+  </div>
+
+  <script>
+    // Get the request button and the form
+    const requestButton = document.getElementById('request-button');
+    const requestForm = document.getElementById('request-form');
+
+    // Toggle visibility of the form when the button is clicked
+    requestButton.addEventListener('click', () => {
+      // Show the form
+      requestForm.style.display = 'block';
+      // Hide the request button after it's clicked
+      requestButton.style.display = 'none';
+    });
+  </script>
+
   <script src="script.js"></script>
 </body>
 </html>
