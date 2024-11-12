@@ -11,11 +11,12 @@ body {
 
 /* Logo */
 #logo {
-  transform: translateX(-27px) translateY(-360px);
-  padding-right: 1px;
-  width: 232px;
-  margin-right: 32px;
-  min-height: 192px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 190px;
+  height: auto;
+  cursor: pointer;
 }
 
 /* Chatbox styling */
