@@ -89,3 +89,9 @@ document.getElementById("refresh-button").addEventListener("click", function() {
   clearedMessage.innerHTML = `<span>Chat cleared. Start a new conversation!</span>`;
   messagesContainer.appendChild(clearedMessage);
 });
+// Send message on "Enter" key press in the input field
+document.getElementById("user-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // Prevent newline in input
+    document.getElementById("send-button").click(); // Trigger the send button click
+  }
