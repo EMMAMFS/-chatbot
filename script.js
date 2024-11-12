@@ -14,7 +14,7 @@ document.getElementById("send-button").addEventListener("click", function() {
   userProfile.style.backgroundPosition = "center";
 
   // Add user message text
-  userMessage.innerHTML += `<span>${userInput}</span>`;
+  userMessage.innerHTML = `<span>${userInput}</span>`;
   
   // Append profile to message
   userMessage.appendChild(userProfile);
@@ -33,7 +33,7 @@ document.getElementById("send-button").addEventListener("click", function() {
   // Add AI profile
   const aiProfile = document.createElement("div");
   aiProfile.className = "profile ai-profile";
-  aiProfile.style.backgroundImage = "url('C:\Users\HP\Downloads\download.jpeg')"; // Path to AI profile picture
+  aiProfile.style.backgroundImage = "url('images/ai-profile.jpg')"; // Path to AI profile picture
   aiProfile.style.backgroundSize = "cover";
   aiProfile.style.backgroundPosition = "center";
 
@@ -47,8 +47,9 @@ document.getElementById("send-button").addEventListener("click", function() {
     const aiMessage = document.createElement("div");
     aiMessage.className = "message ai";
 
-    // Add AI profile image to message
-    aiMessage.appendChild(aiProfile);
+    // Clone AI profile to avoid re-using the same element
+    const aiProfileClone = aiProfile.cloneNode(true);
+    aiMessage.appendChild(aiProfileClone);
     aiMessage.innerHTML += `<span>Hello! How can I assist you today?</span>`; // AI response
 
     // Append AI message to chat
@@ -57,4 +58,9 @@ document.getElementById("send-button").addEventListener("click", function() {
     // Remove loading message
     loadingMessage.remove();
   }, 2000); // 2-second delay for loading effect
+});
+
+// Add event listener to "Request Change" button to redirect to another page
+document.getElementById("request-button").addEventListener("click", function() {
+  window.location.href = 'your-target-page.html'; // Replace with the actual target page URL
 });
