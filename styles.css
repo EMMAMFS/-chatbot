@@ -3,34 +3,45 @@ body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
   color: #4B2E83;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  background-color: #f9f9f9; /* Light background for contrast */
 }
 
 /* Logo */
 #logo {
-  transform: translateX(-27px) translateY(-360px);
-  padding-right: 1px;
-  width: 232px;
-  margin-right: 32px;
-  min-height: 192px;
+  width: 180px; /* Reduced size */
+  margin-bottom: 20px; /* Space between logo and chat */
+  display: block;
+  margin: 0 auto;
+}
+
+/* Chat and Form container */
+#chat-form-container {
+  display: flex;
+  justify-content: space-between; /* Side by side */
+  width: 80%; /* Adjust width to make the layout smaller */
+  max-width: 1200px; /* Ensure the layout doesn’t grow too large */
+  height: 500px; /* Smaller height for the whole container */
 }
 
 /* Chatbox styling */
 #chatbox {
-  width: 700px;
-  height: 500px;
+  width: 60%; /* Make chatbox narrower */
+  height: 100%;
   border: 1px solid #4B2E83;
-  padding: 20px;
+  padding: 15px;
   background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 80px;
+  margin-right: 20px;
+  border-radius: 10px; /* Rounded corners for a softer look */
 }
 
 /* Message area styling */
@@ -52,7 +63,7 @@ body {
 
 input[type="text"] {
   width: 85%;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #4B2E83;
   border-radius: 5px;
 }
@@ -62,108 +73,41 @@ button#send-button {
   border: none;
   cursor: pointer;
   color: #F57C00;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 button#send-button:hover {
   color: #4B2E83;
 }
 
-/* Loading indicator */
-#loading {
-  color: #F57C00;
-  font-size: 14px;
-}
-
-/* Message styling (Chat bubbles with profile images) */
-.message {
-  max-width: 75%;
-  padding: 10px;
-  border-radius: 8px;
-  margin: 5px;
-  font-size: 15px;
+/* Request Change Form styling */
+#request-form-container {
+  width: 35%; /* Make form container smaller */
+  height: 100%;
+  border: 1px solid #4B2E83;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+  border-radius: 10px;
 }
 
-.ai {
-  background-color: #F1F1F1;
-  color: #4B2E83;
-  align-self: flex-start;
-  flex-direction: row; /* Align profile picture and message in a row */
-}
-
-.user {
-  background-color: #4B2E83;
-  color: #ffffff;
-  align-self: flex-end;
-  flex-direction: row-reverse; /* Align profile picture and message in a row but reversed */
-}
-
-/* Profile image styling for AI only */
-.ai img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px; /* Create space between image and message */
-  display: inline-block; /* Ensure image is displayed */
-}
-
-.user img {
-  display: none; /* Hide the profile image for user messages */
-}
-
-/* Request Button Styling */
+/* Request Button styling */
 #request-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   background-color: #F57C00;
   color: white;
   border: none;
-  padding: 15px 25px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 14px;
   border-radius: 30px;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin-bottom: 20px; /* Space below button */
 }
 
 #request-button:hover {
   background-color: #4B2E83;
-}
-
-/* Targeted Form Styles */
-#request-form {
-  display: none; /* Initially hidden */
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 500px;
-}
-
-#request-form input,
-#request-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #4B2E83;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-#request-form button[type="submit"] {
-  background-color: #4B2E83;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#request-form button[type="submit"]:hover {
-  background-color: #F57C00;
-}
