@@ -8,6 +8,8 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  flex-direction: column; /* Ensure layout is in a column to center the chatbox and button */
+  align-items: center; /* Center all items */
 }
 
 /* Logo */
@@ -17,6 +19,7 @@ body {
   width: 232px;
   margin-right: 32px;
   min-height: 192px;
+  margin-bottom: 20px; /* Add some space between logo and chatbox */
 }
 
 /* Chatbox styling */
@@ -30,7 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 80px;
+  margin: 0 auto; /* Centers the chatbox */
 }
 
 /* Message area styling */
