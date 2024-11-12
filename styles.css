@@ -23,15 +23,15 @@ body {
 /* Chat and Form container */
 #chat-form-container {
   display: flex;
-  justify-content: space-between; /* Makes both chat and form take up available space */
-  height: 100vh; /* Ensures full height of the page */
+  justify-content: flex-start; /* Align chat and form side by side */
+  height: calc(100vh - 40px); /* Adjusted for header space */
   padding: 0 20px;
 }
 
 /* Chatbox styling */
 #chatbox {
   flex: 1; /* Makes chatbox take up remaining space */
-  height: 100%; /* Ensures the chat area fills the available height */
+  height: 100%; /* Ensures chat area fills the available height */
   border: 1px solid #4B2E83;
   padding: 20px;
   background-color: #ffffff;
@@ -95,6 +95,7 @@ button#send-button:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 20px; /* Space between chat and form */
 }
 
 #request-button {
