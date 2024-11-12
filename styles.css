@@ -30,10 +30,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+  position: relative; /* Ensure child elements are positioned relative to this */
 }
 
-/* Refresh button styling */
+/* Refresh button styling - overlay on top of chat */
 #refresh-button {
   position: absolute;
   top: 15px;
@@ -51,14 +51,11 @@ body {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s;
+  z-index: 10; /* Make sure the refresh button stays on top of the chat */
 }
 
 #refresh-button:hover {
   background-color: #4B2E83;  /* Dark purple for hover effect */
-}
-
-#refresh-button:hover {
-  background-color: #4B2E83;
 }
 
 /* Message area styling */
