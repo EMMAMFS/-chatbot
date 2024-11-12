@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
@@ -11,12 +12,11 @@ body {
 
 /* Logo */
 #logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 190px;
-  height: auto;
-  cursor: pointer;
+  transform: translateX(-27px) translateY(-360px);
+  padding-right: 1px;
+  width: 232px;
+  margin-right: 32px;
+  min-height: 192px;
 }
 
 /* Chatbox styling */
@@ -113,7 +113,7 @@ button#send-button:hover {
   display: none; /* Hide the profile image for user messages */
 }
 
-/* Request Button styling */
+/* Request Button Styling */
 #request-button {
   position: fixed;
   bottom: 20px;
@@ -132,8 +132,9 @@ button#send-button:hover {
   background-color: #4B2E83;
 }
 
-/* Form Request Styling */
+/* Targeted Form Styles */
 #request-form {
+  display: none; /* Initially hidden */
   margin-top: 20px;
   padding: 20px;
   background-color: #f4f4f4;
