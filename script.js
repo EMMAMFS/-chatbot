@@ -75,7 +75,7 @@ document.getElementById("send-button").addEventListener("click", function() {
 
 // "Request Change" button event listener to redirect to another page
 document.getElementById("request-button").addEventListener("click", function() {
-  window.location.href = 'https://forms.gle/hFfY7iUq2Cexds5h6'; // Replace with the actual target page URL
+  window.location.href = 'https://share.hsforms.com/115ytpoKwSSuebO9wtxuvEgsn9m2'; // Replace with the actual target page URL
 });
 
 // Refresh button event listener to clear chat messages
