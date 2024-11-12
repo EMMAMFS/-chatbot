@@ -68,12 +68,6 @@ button#send-button:hover {
   color: #4B2E83;
 }
 
-/* Loading indicator */
-#loading {
-  color: #F57C00;
-  font-size: 14px;
-}
-
 /* Message styling (Chat bubbles with profile images) */
 .message {
   max-width: 75%;
@@ -129,4 +123,26 @@ button#send-button:hover {
 
 #request-button:hover {
   background-color: #4B2E83;
+}
+
+/* Loading message with animated dots */
+.loading-dots::after {
+  content: " .";
+  animation: loading-dots 1.5s infinite steps(1);
+}
+
+/* Add dots animation */
+@keyframes loading-dots {
+  0% {
+    content: " .";
+  }
+  33% {
+    content: " ..";
+  }
+  66% {
+    content: " ...";
+  }
+  100% {
+    content: " .";
+  }
 }
