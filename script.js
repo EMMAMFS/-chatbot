@@ -27,7 +27,7 @@ document.getElementById("send-button").addEventListener("click", function() {
 
   // Display loading message for AI with animated dots
   const loadingMessage = document.createElement("div");
-  loadingMessage.className = "message ai loading-dots"; // Add the loading-dots class for animation
+  loadingMessage.className = "message ai";
   loadingMessage.id = "loading-message";
 
   // Add AI profile
@@ -38,11 +38,23 @@ document.getElementById("send-button").addEventListener("click", function() {
   aiProfile.style.backgroundPosition = "center";
 
   loadingMessage.appendChild(aiProfile); // Append AI profile to loading message
-  loadingMessage.innerHTML += `<span>Loading.</span>`; // Start with one dot
+  const loadingText = document.createElement("span");
+  loadingText.textContent = "Loading"; // Start with base text
+  loadingMessage.appendChild(loadingText);
   document.getElementById("messages").appendChild(loadingMessage);
+
+  // Animate dots in the loading message
+  let dotCount = 0;
+  const maxDots = 3;
+  const typingAnimation = setInterval(() => {
+    dotCount = (dotCount + 1) % (maxDots + 1); // Cycle from 0 to maxDots
+    loadingText.textContent = "Loading" + ".".repeat(dotCount);
+  }, 500); // Update every 500ms
 
   // Simulate AI response delay
   setTimeout(() => {
+    clearInterval(typingAnimation); // Stop the typing animation
+
     // Create AI message
     const aiMessage = document.createElement("div");
     aiMessage.className = "message ai";
