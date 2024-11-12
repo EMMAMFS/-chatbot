@@ -25,9 +25,9 @@ document.getElementById("send-button").addEventListener("click", function() {
   // Clear input field
   document.getElementById("user-input").value = "";
 
-  // Display loading message for AI
+  // Display loading message for AI with animated dots
   const loadingMessage = document.createElement("div");
-  loadingMessage.className = "message ai";
+  loadingMessage.className = "message ai loading-dots"; // Add the loading-dots class for animation
   loadingMessage.id = "loading-message";
 
   // Add AI profile
@@ -38,7 +38,7 @@ document.getElementById("send-button").addEventListener("click", function() {
   aiProfile.style.backgroundPosition = "center";
 
   loadingMessage.appendChild(aiProfile); // Append AI profile to loading message
-  loadingMessage.innerHTML += `<span>Loading...</span>`; // Loading text
+  loadingMessage.innerHTML += `<span>Loading.</span>`; // Start with one dot
   document.getElementById("messages").appendChild(loadingMessage);
 
   // Simulate AI response delay
