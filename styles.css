@@ -38,7 +38,7 @@ body {
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: #F57C00;
+  background-color: #F57C00;  /* Orange color */
   color: white;
   border: none;
   border-radius: 50%;
@@ -51,6 +51,10 @@ body {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s;
+}
+
+#refresh-button:hover {
+  background-color: #4B2E83;  /* Dark purple for hover effect */
 }
 
 #refresh-button:hover {
