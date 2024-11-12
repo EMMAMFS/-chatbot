@@ -3,13 +3,9 @@ body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
   color: #4B2E83;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
-  flex-direction: column; /* Ensure layout is in a column to center the chatbox and button */
-  align-items: center; /* Center all items */
+  padding: 0;
+  height: 100vh;
 }
 
 /* Logo */
@@ -19,13 +15,23 @@ body {
   width: 232px;
   margin-right: 32px;
   min-height: 192px;
-  margin-bottom: 20px; /* Add some space between logo and chatbox */
+  margin-bottom: 20px; /* Space between logo and chat */
+  display: block;
+  margin: 0 auto;
+}
+
+/* Chat and Form container */
+#chat-form-container {
+  display: flex;
+  justify-content: space-between; /* Makes both chat and form take up available space */
+  height: 100vh; /* Ensures full height of the page */
+  padding: 0 20px;
 }
 
 /* Chatbox styling */
 #chatbox {
-  width: 700px;
-  height: 500px;
+  flex: 1; /* Makes chatbox take up remaining space */
+  height: 100%; /* Ensures the chat area fills the available height */
   border: 1px solid #4B2E83;
   padding: 20px;
   background-color: #ffffff;
@@ -33,7 +39,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 auto; /* Centers the chatbox */
+  margin-right: 20px; /* Space between chat and form */
 }
 
 /* Message area styling */
@@ -78,49 +84,20 @@ button#send-button:hover {
   font-size: 14px;
 }
 
-/* Message styling (Chat bubbles with profile images) */
-.message {
-  max-width: 75%;
-  padding: 10px;
-  border-radius: 8px;
-  margin: 5px;
-  font-size: 15px;
+/* Request Change Form styling */
+#request-form-container {
+  flex: 1; /* Makes the form container take the remaining space beside the chat */
+  height: 100%; /* Ensures the form area fills the available height */
+  border: 1px solid #4B2E83;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.ai {
-  background-color: #F1F1F1;
-  color: #4B2E83;
-  align-self: flex-start;
-  flex-direction: row; /* Align profile picture and message in a row */
-}
-
-.user {
-  background-color: #4B2E83;
-  color: #ffffff;
-  align-self: flex-end;
-  flex-direction: row-reverse; /* Align profile picture and message in a row but reversed */
-}
-
-/* Profile image styling for AI only */
-.ai img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px; /* Create space between image and message */
-  display: inline-block; /* Ensure image is displayed */
-}
-
-.user img {
-  display: none; /* Hide the profile image for user messages */
-}
-
-/* Request Button Styling */
 #request-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   background-color: #F57C00;
   color: white;
   border: none;
@@ -135,16 +112,13 @@ button#send-button:hover {
   background-color: #4B2E83;
 }
 
-/* Targeted Form Styles */
+/* Form styling */
 #request-form {
-  display: none; /* Initially hidden */
+  display: none; /* Hidden initially */
   margin-top: 20px;
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 500px;
+  flex: 1; /* Allow form to take available space */
+  display: flex;
+  flex-direction: column;
 }
 
 #request-form input,
@@ -154,7 +128,6 @@ button#send-button:hover {
   margin-bottom: 15px;
   border: 1px solid #4B2E83;
   border-radius: 5px;
-  font-size: 14px;
 }
 
 #request-form button[type="submit"] {
