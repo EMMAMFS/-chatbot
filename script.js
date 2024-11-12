@@ -1,3 +1,4 @@
+// Send message event listener
 document.getElementById("send-button").addEventListener("click", function() {
   const userInput = document.getElementById("user-input").value;
   if (!userInput) return; // Prevent sending empty messages
@@ -72,7 +73,19 @@ document.getElementById("send-button").addEventListener("click", function() {
   }, 2000); // 2-second delay for loading effect
 });
 
-// Add event listener to "Request Change" button to redirect to another page
+// "Request Change" button event listener to redirect to another page
 document.getElementById("request-button").addEventListener("click", function() {
   window.location.href = 'https://forms.gle/hFfY7iUq2Cexds5h6'; // Replace with the actual target page URL
+});
+
+// Refresh button event listener to clear chat messages
+document.getElementById("refresh-button").addEventListener("click", function() {
+  const messagesContainer = document.getElementById("messages");
+  messagesContainer.innerHTML = ""; // Clear all chat messages
+
+  // Optional: Display a message indicating the chat has been cleared
+  const clearedMessage = document.createElement("div");
+  clearedMessage.className = "message system";
+  clearedMessage.innerHTML = `<span>Chat cleared. Start a new conversation!</span>`;
+  messagesContainer.appendChild(clearedMessage);
 });
