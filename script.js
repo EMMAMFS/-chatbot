@@ -65,39 +65,48 @@ document.getElementById("send-button").addEventListener("click", function() {
     "Hi Peter, this is a reminder about your appointment at Zenix Saloon. See you soon! Let us know if you need to reschedule."
   ];
 
-  // Function to send AI responses sequentially
+  // Function to send AI responses sequentially after user replies
   let messageIndex = 0;
 
-  // Simulate AI response delay after each user message
-  setTimeout(() => {
-    clearInterval(typingAnimation); // Stop the typing animation
+  // Function to replace loading message with the next AI message
+  function replaceLoadingWithAIMessage() {
+    if (messageIndex < aiResponses.length) {
+      // Clear the loading animation
+      clearInterval(typingAnimation);
+      document.getElementById("loading-message").remove();
 
-    const sendNextMessage = () => {
-      if (messageIndex < aiResponses.length) {
-        // Create AI message container
-        const aiMessage = document.createElement("div");
-        aiMessage.className = "message ai";
+      // Create AI message container
+      const aiMessage = document.createElement("div");
+      aiMessage.className = "message ai";
 
-        // Clone AI profile to avoid re-using the same element
-        const aiProfileClone = aiProfile.cloneNode(true);
-        aiMessage.appendChild(aiProfileClone);
-        aiMessage.innerHTML += `<span>${aiResponses[messageIndex]}</span>`; // AI response
+      // Clone AI profile to avoid re-using the same element
+      const aiProfileClone = aiProfile.cloneNode(true);
+      aiMessage.appendChild(aiProfileClone);
+      aiMessage.innerHTML += `<span>${aiResponses[messageIndex]}</span>`; // AI response
 
-        // Append AI message to chat
-        document.getElementById("messages").appendChild(aiMessage);
+      // Append AI message to chat
+      document.getElementById("messages").appendChild(aiMessage);
 
-        messageIndex++;
+      messageIndex++;
+    }
+  }
 
-        // Call the next AI message with a delay
-        setTimeout(sendNextMessage, 2000); // Delay between each response
-      } else {
-        loadingMessage.remove(); // Remove loading message after all responses are sent
-      }
-    };
+  // Wait for user response before sending the next AI message
+  document.getElementById("send-button").disabled = true; // Disable the button to prevent sending multiple messages
 
-    // Start sending the first AI message
-    sendNextMessage();
-  }, 2000); // 2-second delay for the first AI message after user input
+  // Listen for the user's next response
+  document.getElementById("user-input").addEventListener("keypress", function(event) {
+    if (event.key === "Enter" && document.getElementById("user-input").value.trim()) {
+      event.preventDefault();
+      replaceLoadingWithAIMessage(); // Send the next AI message
+
+      // Clear input field for the next message
+      document.getElementById("user-input").value = "";
+
+      // Re-enable the button to allow the user to send another message
+      document.getElementById("send-button").disabled = false;
+    }
+  });
 });
 
 // "Request Change" button event listener to redirect to another page
@@ -115,12 +124,4 @@ document.getElementById("refresh-button").addEventListener("click", function() {
   clearedMessage.className = "message system";
   clearedMessage.innerHTML = `<span>Chat cleared. Start a new conversation!</span>`;
   messagesContainer.appendChild(clearedMessage);
-});
-
-// Send message on "Enter" key press in the input field
-document.getElementById("user-input").addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault(); // Prevent newline in input
-    document.getElementById("send-button").click(); // Trigger the send button click
-  }
 });
