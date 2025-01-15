@@ -52,27 +52,29 @@ document.getElementById("send-button").addEventListener("click", function() {
     loadingText.textContent = "Loading" + ".".repeat(dotCount);
   }, 500); // Update every 500ms
 
-  // Simulate AI response delay
+  // AI responses
+  const aiResponses = [
+    "Hello! 😊 Welcome to Zenix Saloon. Here’s what we can help you with:",
+    "We offer variety from:\nHaircuts: From classic styles to modern trends, we’ve got you covered!\nShaves: Enjoy a clean, professional shave.\nGrooming Packages: Treat yourself with a complete grooming experience, including haircuts, beard trims, and scalp treatments.",
+    "You’ve come to the right place. We specialize in premium grooming services, and a shave with a taper fade is one of our most popular requests!",
+    "Here’s what we offer in Shave Options:\nClassic Shave: A clean, professional shave using high-quality razors and shaving products.\nHot Towel Shave: Relax and enjoy a hot towel treatment for the smoothest shave.",
+    "Taper Fade Options:\nTraditional Taper Fade: A sharp, clean cut with seamless blending.\nCustom Taper Fade: Let us personalize the fade to match your style.",
+    "Our pricing for a shave and taper fade is as follows:\nClassic Shave + Traditional Taper Fade: $40\nHot Towel Shave + Custom Taper Fade: $55",
+    "Would you like to book now? I can schedule your appointment for you, or you can book online here:\nLet me check availability… One moment, please! 🕒",
+    "✅ Great news! We have an opening tomorrow at 3 PM. I’ve reserved the slot for you. You’ll receive a confirmation text shortly. Is there anything else I can help you with?",
+    "Hi Peter, this is a reminder about your appointment at Zenix Saloon. See you soon! Let us know if you need to reschedule."
+  ];
+
+  // Function to send AI responses sequentially
+  let messageIndex = 0;
+
+  // Simulate AI response delay after each user message
   setTimeout(() => {
     clearInterval(typingAnimation); // Stop the typing animation
 
-    // AI responses
-    const aiResponses = [
-      "Hello! 😊 Welcome to Zenix Saloon. Here’s what we can help you with:",
-      "We offer variety from:\nHaircuts: From classic styles to modern trends, we’ve got you covered!\nShaves: Enjoy a clean, professional shave.\nGrooming Packages: Treat yourself with a complete grooming experience, including haircuts, beard trims, and scalp treatments.",
-      "You’ve come to the right place. We specialize in premium grooming services, and a shave with a taper fade is one of our most popular requests!",
-      "Here’s what we offer in Shave Options:\nClassic Shave: A clean, professional shave using high-quality razors and shaving products.\nHot Towel Shave: Relax and enjoy a hot towel treatment for the smoothest shave.",
-      "Taper Fade Options:\nTraditional Taper Fade: A sharp, clean cut with seamless blending.\nCustom Taper Fade: Let us personalize the fade to match your style.",
-      "Our pricing for a shave and taper fade is as follows:\nClassic Shave + Traditional Taper Fade: $40\nHot Towel Shave + Custom Taper Fade: $55",
-      "Would you like to book now? I can schedule your appointment for you, or you can book online here:\nLet me check availability… One moment, please! 🕒",
-      "✅ Great news! We have an opening tomorrow at 3 PM. I’ve reserved the slot for you. You’ll receive a confirmation text shortly. Is there anything else I can help you with?",
-      "Hi Peter, this is a reminder about your appointment at Zenix Saloon. See you soon! Let us know if you need to reschedule."
-    ];
-
-    // Function to send AI responses one by one with a delay
-    let messageIndex = 0;
-    const messageInterval = setInterval(() => {
+    const sendNextMessage = () => {
       if (messageIndex < aiResponses.length) {
+        // Create AI message container
         const aiMessage = document.createElement("div");
         aiMessage.className = "message ai";
 
@@ -85,12 +87,17 @@ document.getElementById("send-button").addEventListener("click", function() {
         document.getElementById("messages").appendChild(aiMessage);
 
         messageIndex++;
+
+        // Call the next AI message with a delay
+        setTimeout(sendNextMessage, 2000); // Delay between each response
       } else {
-        clearInterval(messageInterval); // Stop when all messages are sent
-        loadingMessage.remove(); // Remove loading message after all responses
+        loadingMessage.remove(); // Remove loading message after all responses are sent
       }
-    }, 2000); // 2-second delay between each message
-  }, 2000); // Initial loading delay
+    };
+
+    // Start sending the first AI message
+    sendNextMessage();
+  }, 2000); // 2-second delay for the first AI message after user input
 });
 
 // "Request Change" button event listener to redirect to another page
