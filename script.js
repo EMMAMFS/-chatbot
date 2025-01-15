@@ -28,7 +28,7 @@ document.getElementById("send-button").addEventListener("click", function() {
 
   // Display loading message for AI with animated dots
   const loadingMessage = document.createElement("div");
-  loadingMessage.className = "message ai";
+  loadingMessage.className = "message ai loading-dots"; // Add loading-dots class for animation
   loadingMessage.id = "loading-message";
 
   // Add AI profile
@@ -125,3 +125,4 @@ document.getElementById("refresh-button").addEventListener("click", function() {
   clearedMessage.innerHTML = `<span>Chat cleared. Start a new conversation!</span>`;
   messagesContainer.appendChild(clearedMessage);
 });
+
