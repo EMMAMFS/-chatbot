@@ -27,34 +27,38 @@ document.getElementById("send-button").addEventListener("click", function () {
   document.getElementById("user-input").value = "";
 
   // Display loading message for AI with animated dots
-  const loadingMessage = document.createElement("div");
-  loadingMessage.className = "message ai loading-dots";
-  loadingMessage.id = "loading-message";
+  let typingAnimation; // Declare this as a local variable
 
-  // Add AI profile
-  const aiProfile = document.createElement("div");
-  aiProfile.className = "profile ai-profile";
-  aiProfile.style.backgroundImage = "url('images/ai-profile.jpg')"; // Path to AI profile picture
-  aiProfile.style.backgroundSize = "cover";
-  aiProfile.style.backgroundPosition = "center";
+  function displayLoadingDots() {
+    const loadingMessage = document.createElement("div");
+    loadingMessage.className = "message ai loading-dots";
+    loadingMessage.id = "loading-message";
 
-  loadingMessage.appendChild(aiProfile);
-  const loadingText = document.createElement("span");
-  loadingText.textContent = "Loading";
-  loadingMessage.appendChild(loadingText);
-  document.getElementById("messages").appendChild(loadingMessage);
+    // Add AI profile
+    const aiProfile = document.createElement("div");
+    aiProfile.className = "profile ai-profile";
+    aiProfile.style.backgroundImage = "url('images/ai-profile.jpg')";
+    aiProfile.style.backgroundSize = "cover";
+    aiProfile.style.backgroundPosition = "center";
 
-  // Animate dots in the loading message
-  let dotCount = 0;
-  const maxDots = 3;
-  const typingAnimation = setInterval(() => {
-    if (document.getElementById("loading-message")) {
-      dotCount = (dotCount + 1) % (maxDots + 1);
-      loadingText.textContent = "Loading" + ".".repeat(dotCount);
-    } else {
-      clearInterval(typingAnimation);
-    }
-  }, 500);
+    loadingMessage.appendChild(aiProfile);
+
+    const loadingText = document.createElement("span");
+    loadingText.textContent = "Loading";
+    loadingMessage.appendChild(loadingText);
+    document.getElementById("messages").appendChild(loadingMessage);
+
+    let dotCount = 0;
+    const maxDots = 3;
+    typingAnimation = setInterval(() => {
+      if (document.getElementById("loading-message")) {
+        dotCount = (dotCount + 1) % (maxDots + 1);
+        loadingText.textContent = "Loading" + ".".repeat(dotCount);
+      } else {
+        clearInterval(typingAnimation);
+      }
+    }, 500);
+  }
 
   // AI responses
   const aiResponses = [
@@ -78,7 +82,11 @@ document.getElementById("send-button").addEventListener("click", function () {
       aiMessage.className = "message ai";
 
       // Add AI profile
-      const aiProfileClone = aiProfile.cloneNode(true);
+      const aiProfileClone = document.createElement("div");
+      aiProfileClone.className = "profile ai-profile";
+      aiProfileClone.style.backgroundImage = "url('images/ai-profile.jpg')";
+      aiProfileClone.style.backgroundSize = "cover";
+      aiProfileClone.style.backgroundPosition = "center";
       aiMessage.appendChild(aiProfileClone);
 
       // Add AI message text
@@ -106,38 +114,11 @@ document.getElementById("send-button").addEventListener("click", function () {
     }
   }
 
-  function displayLoadingDots() {
-    const loadingMessage = document.createElement("div");
-    loadingMessage.className = "message ai loading-dots";
-    loadingMessage.id = "loading-message";
-
-    const aiProfile = document.createElement("div");
-    aiProfile.className = "profile ai-profile";
-    aiProfile.style.backgroundImage = "url('images/ai-profile.jpg')";
-    aiProfile.style.backgroundSize = "cover";
-    aiProfile.style.backgroundPosition = "center";
-
-    loadingMessage.appendChild(aiProfile);
-
-    const loadingText = document.createElement("span");
-    loadingText.textContent = "Loading";
-    loadingMessage.appendChild(loadingText);
-    document.getElementById("messages").appendChild(loadingMessage);
-
-    let dotCount = 0;
-    const maxDots = 3;
-    typingAnimation = setInterval(() => {
-      if (document.getElementById("loading-message")) {
-        dotCount = (dotCount + 1) % (maxDots + 1);
-        loadingText.textContent = "Loading" + ".".repeat(dotCount);
-      } else {
-        clearInterval(typingAnimation);
-      }
-    }, 500);
-  }
-
   // Start showing the first AI response
   setTimeout(() => {
-    replaceLoadingWithAIMessage();
+    displayLoadingDots();
+    setTimeout(() => {
+      replaceLoadingWithAIMessage();
+    }, 2000);
   }, 2000);
 });
