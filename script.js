@@ -75,7 +75,8 @@ document.getElementById("send-button").addEventListener("click", function () {
     if (messageIndex < aiResponses.length) {
       // Clear the loading animation
       clearInterval(typingAnimation);
-      document.getElementById("loading-message").remove();
+      const loadingMessage = document.getElementById("loading-message");
+      if (loadingMessage) loadingMessage.remove();
 
       // Create AI message container
       const aiMessage = document.createElement("div");
@@ -114,11 +115,16 @@ document.getElementById("send-button").addEventListener("click", function () {
     }
   }
 
-  // Start showing the first AI response
-  setTimeout(() => {
-    displayLoadingDots();
+  // Start showing the first AI response if the AI hasn't responded yet
+  if (messageIndex === 0) {
     setTimeout(() => {
-      replaceLoadingWithAIMessage();
+      displayLoadingDots();
+      setTimeout(() => {
+        replaceLoadingWithAIMessage();
+      }, 2000);
     }, 2000);
-  }, 2000);
+  } else {
+    // If AI already started responding, continue from where it left off
+    replaceLoadingWithAIMessage();
+  }
 });
