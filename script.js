@@ -68,7 +68,7 @@ document.getElementById("send-button").addEventListener("click", function () {
     "✅ Great news! We have an opening tomorrow at 3 PM. I’ve reserved the slot for you. You’ll receive a confirmation text shortly. Is there anything else I can help you with?",
   ];
 
-  // Function to send AI responses sequentially
+  // Function to send AI responses one by one after user input
   let messageIndex = 0;
 
   function replaceLoadingWithAIMessage() {
@@ -105,7 +105,7 @@ document.getElementById("send-button").addEventListener("click", function () {
     }
   }
 
-  // Start showing the first AI response if it's the first message
+  // Start showing the first AI response when the first message is sent
   if (messageIndex === 0) {
     setTimeout(() => {
       displayLoadingDots();
@@ -121,3 +121,4 @@ document.getElementById("send-button").addEventListener("click", function () {
     }, 2000);
   }
 });
+
