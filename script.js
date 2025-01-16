@@ -1,5 +1,5 @@
 // Send message event listener
-document.getElementById("send-button").addEventListener("click", function() {
+document.getElementById("send-button").addEventListener("click", function () {
   const userInput = document.getElementById("user-input").value.trim();
   if (!userInput) return; // Prevent sending empty messages
 
@@ -16,7 +16,7 @@ document.getElementById("send-button").addEventListener("click", function() {
 
   // Add user message text
   userMessage.innerHTML = `<span>${userInput}</span>`;
-  
+
   // Append profile to message
   userMessage.appendChild(userProfile);
 
@@ -28,7 +28,7 @@ document.getElementById("send-button").addEventListener("click", function() {
 
   // Display loading message for AI with animated dots
   const loadingMessage = document.createElement("div");
-  loadingMessage.className = "message ai loading-dots"; // Add loading-dots class for animation
+  loadingMessage.className = "message ai loading-dots";
   loadingMessage.id = "loading-message";
 
   // Add AI profile
@@ -38,9 +38,9 @@ document.getElementById("send-button").addEventListener("click", function() {
   aiProfile.style.backgroundSize = "cover";
   aiProfile.style.backgroundPosition = "center";
 
-  loadingMessage.appendChild(aiProfile); // Append AI profile to loading message
+  loadingMessage.appendChild(aiProfile);
   const loadingText = document.createElement("span");
-  loadingText.textContent = "Loading"; // Start with base text
+  loadingText.textContent = "Loading";
   loadingMessage.appendChild(loadingText);
   document.getElementById("messages").appendChild(loadingMessage);
 
@@ -49,24 +49,19 @@ document.getElementById("send-button").addEventListener("click", function() {
   const maxDots = 3;
   const typingAnimation = setInterval(() => {
     if (document.getElementById("loading-message")) {
-      dotCount = (dotCount + 1) % (maxDots + 1); // Cycle from 0 to maxDots
+      dotCount = (dotCount + 1) % (maxDots + 1);
       loadingText.textContent = "Loading" + ".".repeat(dotCount);
     } else {
       clearInterval(typingAnimation);
     }
-  }, 500); // Update every 500ms
+  }, 500);
 
   // AI responses
   const aiResponses = [
     "Hello! 😊 Welcome to Zenix Saloon. Here’s what we can help you with:",
     "We offer variety from:\nHaircuts: From classic styles to modern trends, we’ve got you covered!\nShaves: Enjoy a clean, professional shave.\nGrooming Packages: Treat yourself with a complete grooming experience, including haircuts, beard trims, and scalp treatments.",
-    "You’ve come to the right place. We specialize in premium grooming services, and a shave with a taper fade is one of our most popular requests!",
-    "Here’s what we offer in Shave Options:\nClassic Shave: A clean, professional shave using high-quality razors and shaving products.\nHot Towel Shave: Relax and enjoy a hot towel treatment for the smoothest shave.",
-    "Taper Fade Options:\nTraditional Taper Fade: A sharp, clean cut with seamless blending.\nCustom Taper Fade: Let us personalize the fade to match your style.",
     "Our pricing for a shave and taper fade is as follows:\nClassic Shave + Traditional Taper Fade: $40\nHot Towel Shave + Custom Taper Fade: $55",
-    "Would you like to book now? I can schedule your appointment for you, or you can book online here:\nLet me check availability… One moment, please! 🕒",
     "✅ Great news! We have an opening tomorrow at 3 PM. I’ve reserved the slot for you. You’ll receive a confirmation text shortly. Is there anything else I can help you with?",
-    "Hi Peter, this is a reminder about your appointment at Zenix Saloon. See you soon! Let us know if you need to reschedule."
   ];
 
   // Function to send AI responses sequentially
@@ -82,37 +77,67 @@ document.getElementById("send-button").addEventListener("click", function() {
       const aiMessage = document.createElement("div");
       aiMessage.className = "message ai";
 
-      // Clone AI profile to avoid re-using the same element
+      // Add AI profile
       const aiProfileClone = aiProfile.cloneNode(true);
       aiMessage.appendChild(aiProfileClone);
-      aiMessage.innerHTML += `<span>${aiResponses[messageIndex]}</span>`; // AI response
+
+      // Add AI message text
+      aiMessage.innerHTML += `<span>${aiResponses[messageIndex]}</span>`;
 
       // Append AI message to chat
       document.getElementById("messages").appendChild(aiMessage);
 
+      // Scroll to the latest message
+      const messagesContainer = document.getElementById("messages");
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // Move to the next message
       messageIndex++;
+
+      // Queue the next message if there are more
+      if (messageIndex < aiResponses.length) {
+        setTimeout(() => {
+          displayLoadingDots(); // Re-display loading dots for the next message
+          setTimeout(() => {
+            replaceLoadingWithAIMessage(); // Show the next AI response
+          }, 2000);
+        }, 1000);
+      }
     }
   }
 
-  // Simulate AI response delay
+  function displayLoadingDots() {
+    const loadingMessage = document.createElement("div");
+    loadingMessage.className = "message ai loading-dots";
+    loadingMessage.id = "loading-message";
+
+    const aiProfile = document.createElement("div");
+    aiProfile.className = "profile ai-profile";
+    aiProfile.style.backgroundImage = "url('images/ai-profile.jpg')";
+    aiProfile.style.backgroundSize = "cover";
+    aiProfile.style.backgroundPosition = "center";
+
+    loadingMessage.appendChild(aiProfile);
+
+    const loadingText = document.createElement("span");
+    loadingText.textContent = "Loading";
+    loadingMessage.appendChild(loadingText);
+    document.getElementById("messages").appendChild(loadingMessage);
+
+    let dotCount = 0;
+    const maxDots = 3;
+    typingAnimation = setInterval(() => {
+      if (document.getElementById("loading-message")) {
+        dotCount = (dotCount + 1) % (maxDots + 1);
+        loadingText.textContent = "Loading" + ".".repeat(dotCount);
+      } else {
+        clearInterval(typingAnimation);
+      }
+    }, 500);
+  }
+
+  // Start showing the first AI response
   setTimeout(() => {
     replaceLoadingWithAIMessage();
-  }, 2000); // Adjust delay time for AI response
-
-  // Re-enable the send button after the response
-  setTimeout(() => {
-    document.getElementById("send-button").disabled = false;
   }, 2000);
-});
-
-// Refresh button event listener to clear chat messages
-document.getElementById("refresh-button").addEventListener("click", function() {
-  const messagesContainer = document.getElementById("messages");
-  messagesContainer.innerHTML = ""; // Clear all chat messages
-
-  // Optional: Display a message indicating the chat has been cleared
-  const clearedMessage = document.createElement("div");
-  clearedMessage.className = "message system";
-  clearedMessage.innerHTML = `<span>Chat cleared. Start a new conversation!</span>`;
-  messagesContainer.appendChild(clearedMessage);
 });
