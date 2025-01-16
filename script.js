@@ -62,8 +62,10 @@ document.getElementById("send-button").addEventListener("click", function () {
 
   // AI responses
   const aiResponses = [
-    "Hello! 😊 Welcome to Zenix Saloon. Here’s what we can help you with:\nWe offer variety from:\nHaircuts: From classic styles to modern trends, we’ve got you covered!\nShaves: Enjoy a clean, professional shave.\nGrooming Packages: Treat yourself with a complete grooming experience, including haircuts, beard trims, and scalp treatments.",
-    "You’ve come to the right place. We specialize in premium grooming services, and a shave with a taper fade is one of our most popular requests!\nHere’s what we offer for Shave Options:\nClassic Shave: A clean, professional shave using high-quality razors and shaving products.\nHot Towel Shave: Relax and enjoy a hot towel treatment for the smoothest shave.\nTaper Fade Options:\nTraditional Taper Fade: A sharp, clean cut with seamless blending.\nCustom Taper Fade: Let us personalize the fade to match your style.",
+    "Hello! 😊 Welcome to Zenix Saloon. Here’s what we can help you with:",
+    "We offer a variety from:\nHaircuts: From classic styles to modern trends, we’ve got you covered!\nShaves: Enjoy a clean, professional shave.\nGrooming Packages: Treat yourself with a complete grooming experience, including haircuts, beard trims, and scalp treatments.",
+    "You’ve come to the right place. We specialize in premium grooming services, and a shave with a taper fade is one of our most popular requests!",
+    "Here’s what we offer for Shave Options:\nClassic Shave: A clean, professional shave using high-quality razors and shaving products.\nHot Towel Shave: Relax and enjoy a hot towel treatment for the smoothest shave.\nTaper Fade Options:\nTraditional Taper Fade: A sharp, clean cut with seamless blending.\nCustom Taper Fade: Let us personalize the fade to match your style.",
     "Our pricing for a shave and taper fade is as follows:\nClassic Shave + Traditional Taper Fade: $40\nHot Towel Shave + Custom Taper Fade: $55",
     "Would you like to book now? I can schedule your appointment for you, or you can book online here:\n[Booking Link]",
     "Let me check availability… One moment, please! 🕒",
