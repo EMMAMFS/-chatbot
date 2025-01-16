@@ -1,6 +1,6 @@
 // Send message event listener
 document.getElementById("send-button").addEventListener("click", function() {
-  const userInput = document.getElementById("user-input").value;
+  const userInput = document.getElementById("user-input").value.trim();
   if (!userInput) return; // Prevent sending empty messages
 
   // Create a message container for the user
@@ -48,8 +48,12 @@ document.getElementById("send-button").addEventListener("click", function() {
   let dotCount = 0;
   const maxDots = 3;
   const typingAnimation = setInterval(() => {
-    dotCount = (dotCount + 1) % (maxDots + 1); // Cycle from 0 to maxDots
-    loadingText.textContent = "Loading" + ".".repeat(dotCount);
+    if (document.getElementById("loading-message")) {
+      dotCount = (dotCount + 1) % (maxDots + 1); // Cycle from 0 to maxDots
+      loadingText.textContent = "Loading" + ".".repeat(dotCount);
+    } else {
+      clearInterval(typingAnimation);
+    }
   }, 500); // Update every 500ms
 
   // AI responses
@@ -65,10 +69,9 @@ document.getElementById("send-button").addEventListener("click", function() {
     "Hi Peter, this is a reminder about your appointment at Zenix Saloon. See you soon! Let us know if you need to reschedule."
   ];
 
-  // Function to send AI responses sequentially after user replies
+  // Function to send AI responses sequentially
   let messageIndex = 0;
 
-  // Function to replace loading message with the next AI message
   function replaceLoadingWithAIMessage() {
     if (messageIndex < aiResponses.length) {
       // Clear the loading animation
@@ -91,27 +94,15 @@ document.getElementById("send-button").addEventListener("click", function() {
     }
   }
 
-  // Wait for user response before sending the next AI message
-  document.getElementById("send-button").disabled = true; // Disable the button to prevent sending multiple messages
+  // Simulate AI response delay
+  setTimeout(() => {
+    replaceLoadingWithAIMessage();
+  }, 2000); // Adjust delay time for AI response
 
-  // Listen for the user's next response
-  document.getElementById("user-input").addEventListener("keypress", function(event) {
-    if (event.key === "Enter" && document.getElementById("user-input").value.trim()) {
-      event.preventDefault();
-      replaceLoadingWithAIMessage(); // Send the next AI message
-
-      // Clear input field for the next message
-      document.getElementById("user-input").value = "";
-
-      // Re-enable the button to allow the user to send another message
-      document.getElementById("send-button").disabled = false;
-    }
-  });
-});
-
-// "Request Change" button event listener to redirect to another page
-document.getElementById("request-button").addEventListener("click", function() {
-  window.location.href = 'https://share.hsforms.com/115ytpoKwSSuebO9wtxuvEgsn9m2'; // Replace with the actual target page URL
+  // Re-enable the send button after the response
+  setTimeout(() => {
+    document.getElementById("send-button").disabled = false;
+  }, 2000);
 });
 
 // Refresh button event listener to clear chat messages
@@ -125,4 +116,3 @@ document.getElementById("refresh-button").addEventListener("click", function() {
   clearedMessage.innerHTML = `<span>Chat cleared. Start a new conversation!</span>`;
   messagesContainer.appendChild(clearedMessage);
 });
-
