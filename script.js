@@ -128,7 +128,8 @@ document.getElementById("send-button").addEventListener("click", function () {
   if (messageIndex === 0) {
     displayLoadingDots();
     setTimeout(() => {
-      sendNextAIMessage();
+      const responseType = analyzeUserInput(userInput);
+      sendNextAIMessage(responseType);
     }, 2000);
   }
 
@@ -136,6 +137,7 @@ document.getElementById("send-button").addEventListener("click", function () {
   function analyzeUserInput(input) {
     const lowerCaseInput = input.toLowerCase();
 
+    // If the input contains "book", "appointment", or similar, go to booking flow
     if (lowerCaseInput.includes("book") || lowerCaseInput.includes("appointment")) {
       return "bookingInquiry"; // Trigger booking response
     } else if (lowerCaseInput.includes("price") || lowerCaseInput.includes("cost")) {
@@ -143,7 +145,7 @@ document.getElementById("send-button").addEventListener("click", function () {
     } else if (lowerCaseInput.includes("service")) {
       return "serviceInquiry"; // Trigger service inquiry response
     } else {
-      return "default"; // Default response
+      return "default"; // Default response if no specific keywords
     }
   }
 
