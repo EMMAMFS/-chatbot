@@ -102,20 +102,10 @@ document.getElementById("send-button").addEventListener("click", function () {
 
       // Move to the next message
       messageIndex++;
-
-      // Queue the next message if there are more
-      if (messageIndex < aiResponses.length) {
-        setTimeout(() => {
-          displayLoadingDots(); // Re-display loading dots for the next message
-          setTimeout(() => {
-            replaceLoadingWithAIMessage(); // Show the next AI response
-          }, 2000);
-        }, 1000);
-      }
     }
   }
 
-  // Start showing the first AI response if the AI hasn't responded yet
+  // Start showing the first AI response if it's the first message
   if (messageIndex === 0) {
     setTimeout(() => {
       displayLoadingDots();
@@ -124,7 +114,10 @@ document.getElementById("send-button").addEventListener("click", function () {
       }, 2000);
     }, 2000);
   } else {
-    // If AI already started responding, continue from where it left off
-    replaceLoadingWithAIMessage();
+    // If the user has already interacted, continue from where the AI left off
+    displayLoadingDots();
+    setTimeout(() => {
+      replaceLoadingWithAIMessage();
+    }, 2000);
   }
 });
