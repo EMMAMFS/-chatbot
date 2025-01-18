@@ -10,6 +10,16 @@ body {
   margin: 0;
 }
 
+#logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 190px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Chatbox styling */
 #chatbox {
   width: 700px;
   height: 500px;
@@ -20,9 +30,35 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+  position: relative; /* Ensure child elements are positioned relative to this */
 }
 
+/* Refresh button styling - overlay on top of chat */
+#refresh-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #F57C00;  /* Orange color */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  z-index: 10; /* Make sure the refresh button stays on top of the chat */
+}
+
+#refresh-button:hover {
+  background-color: #4B2E83;  /* Dark purple for hover effect */
+}
+
+/* Message area styling */
 #messages {
   height: 400px;
   overflow-y: scroll;
@@ -32,6 +68,33 @@ body {
   padding-right: 10px;
 }
 
+/* Input area styling */
+#input-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="text"] {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid #4B2E83;
+  border-radius: 5px;
+}
+
+button#send-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #F57C00;
+  font-size: 24px;
+}
+
+button#send-button:hover {
+  color: #4B2E83;
+}
+
+/* Message styling (Chat bubbles with profile images) */
 .message {
   max-width: 75%;
   padding: 10px;
@@ -46,44 +109,55 @@ body {
   background-color: #F1F1F1;
   color: #4B2E83;
   align-self: flex-start;
-  flex-direction: row;
+  flex-direction: row; /* Align profile picture and message in a row */
 }
 
 .user {
   background-color: #4B2E83;
   color: #ffffff;
   align-self: flex-end;
-  flex-direction: row-reverse;
+  flex-direction: row-reverse; /* Align profile picture and message in a row but reversed */
 }
 
+/* Profile image styling for AI only */
 .ai img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 10px; /* Create space between image and message */
+  display: inline-block; /* Ensure image is displayed */
 }
 
 .user img {
-  display: none;
+  display: none; /* Hide the profile image for user messages */
 }
 
-.loading-dots {
-  position: relative;
-  background-color: #F1F1F1;
-  color: #4B2E83;
-  padding: 10px;
-  border-radius: 8px;
-  margin: 5px;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
+/* Request Button styling */
+#request-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #F57C00;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+#request-button:hover {
+  background-color: #4B2E83;
+}
+
+/* Loading message with animated dots */
 .loading-dots::after {
   content: " .";
   animation: loading-dots 1.5s infinite steps(1);
 }
 
+/* Add dots animation */
 @keyframes loading-dots {
   0% {
     content: " .";
