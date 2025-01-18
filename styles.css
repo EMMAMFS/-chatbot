@@ -1,12 +1,4 @@
-#logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 150px; /* Adjust the width as needed */
-  max-width: 20%; /* Prevent it from being too large */
-  height: auto; /* Maintain aspect ratio */
-  cursor: pointer;
-}
+
 /* General styling */
 body {
   font-family: Arial, sans-serif;
